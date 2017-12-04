@@ -56,11 +56,12 @@ module Dotenv
     private
 
     def dotenv_files
+      dir = root.join(".env/")
       [
-        root.join(".env.#{Rails.env}.local"),
-        (root.join(".env.local") unless Rails.env.test?),
-        root.join(".env.#{Rails.env}"),
-        root.join(".env")
+        dir.join("#{Rails.env}.local"),
+        (dir.join("local") unless Rails.env.test?),
+        dir.join("#{Rails.env}"),
+        dir.join("common")
       ].compact
     end
   end
